@@ -1,9 +1,3 @@
 #/bin/bash
 
-echo "Changing to remote_deployment_scripts directory"
-cd remote_deployment_scripts
-echo
-
-echo "These are the scripts in this folder"
-echo
-ls -l
+bash ufw_jupyter_rstudio_torSSH_setup.sh
