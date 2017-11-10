@@ -34,5 +34,5 @@ echo "Changing working directory to remote_deployment_scripts"
 echo
 echo "These are the contents of this folder"
 echo
-echo "Continue the stup by running start.sh"
+echo "Continue the setup by running bash start.sh"
 ssh -t $remoteSUDOUSER@$remoteIPaddress "cd remote_deployment_scripts && ls -l; bash"
