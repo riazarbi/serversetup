@@ -141,4 +141,4 @@ fi
 #===========================================================================#
 echo "################## END OF SETUP PROCESS ###################"
 echo
-bash summary.sh
+bash ~/remote_deployment_scripts/summary.sh
