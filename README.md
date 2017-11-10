@@ -42,3 +42,4 @@ At present, this works but it's not elegant and has no bells and whistles. Thing
 * Configure SSL for Jupyterhub
 * Configure SSL for RStudio
 * Consider installing NextCloud Server, creating client sync for each user's home directory, and synchronizing passwords with system passwords
+* Eliminate prompts
