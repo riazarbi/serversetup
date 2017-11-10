@@ -30,6 +30,5 @@ echo "################ LEAVING LOCAL MACHINE ##############"
 echo "########## YOU WILL NOW BE IN REMOTE SHELL ##########"
 echo "#####################################################"
 echo 
-ssh $remoteSUDOUSER@$remoteIPaddress 'bash -s' < remote_deployment_scripts/start.sh
-ssh $remoteSUDOUSER@$remoteIPaddress
-
+#ssh $remoteSUDOUSER@$remoteIPaddress 'bash -s' < remote_deployment_scripts/start.sh
+ssh -t $remoteSUDOUSER@$remoteIPaddress "cd remote_deployment_scripts && ls -l; bash"
