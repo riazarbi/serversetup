@@ -1,7 +1,17 @@
 # serversetup
 
 ### Introduction and Disclaimer
-This is my personal set of scripts for customizing a basic Ubuntu 16.04 server install. It is a very rough work in progress. Things may or may not work.
+This is my personal set of scripts for customizing a basic Ubuntu server install. 
+
+When complete, it will take a fresh Ubuntu 16.04 Server and -
+
+1) Disable password authentication for SSH access.
+2) Configure UFW firewall.
+3) Install, configure and enable Jupyterhub Server on port 8000.
+4) INstall, configure and enable RStudio Server on port 8787.
+5) Install, configure and enable Tor Hidden Service for SSH remote access.
+
+It is a very rough work in progress. Things may or may not work.
 
 ### The Plan
 Eventually, you should be avble to use this repo in the following way:
