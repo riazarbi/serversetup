@@ -52,11 +52,11 @@ sudo npm install -g configurable-http-proxy -y
 sudo pip3 install jupyterhub
 sudo pip3 install --upgrade notebook
 
-echo "Generating Config"
+echo "Generating Jupyterhub Config"
 jupyterhub --generate-config
 sed -i "/c.Authenticator.admin_users/c\c.Authenticator.admin_users = {\'$username\'}" ~/jupyterhub_config.py
 
-echo "Creating Jupyterhub startup service"
+echo "Creating Jupyterhub Startup Service"
 cat >/etc/systemd/system/jupyterhub.service << EOL
 [Unit]
 Description=Jupyterhub
@@ -73,24 +73,27 @@ EOL
 echo "Copying Jupyterhub startup service to /lib/systemd"
 sudo cp /etc/systemd/system/jupyterhub.service /lib/systemd/system/jupyterhub.service
 
-echo "Enabling Jupyterhub at startup"
+echo "Enabling Jupyterhub at Startup"
 sudo systemctl enable jupyterhub
 sudo systemctl start jupyterhub
+
 echo "Opening up Jupyterhub port 8000"
 sudo ufw allow 8000
 
 echo "Setting Up RStudio Server"
 echo "Adding CRAN GPG key"
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
+
 echo "adding Cran to Ubuntu repos"
 echo "# CRAN Repo" | sudo tee -a /etc/apt/sources.list
 echo "deb https://cloud.r-project.org/bin/linux/ubuntu xenial/" | sudo tee -a /etc/apt/sources.list
+
 echo "Installing dependencies"
 sudo apt-get update
 sudo apt-get install r-base -y
 sudo apt-get install gdebi-core -y
 
-echo "##########################"
+echo "######################################################################"
 echo "NB: PROBABLY GET THE LATEST RSERVER DEB, THIS ONE IS A HARDLINKED WGET" 
 wget https://download2.rstudio.org/rstudio-server-1.1.383-amd64.deb
 
@@ -100,6 +103,7 @@ sudo gdebi rstudio-server-1.1.383-amd64.deb
 echo "Enabling RStudio Server at Startup"
 sudo systemctl start rstudio-server
 sudo systemctl enable rstudio-server
+
 echo "Opening up RStudio Server on port 8787"
 sudo ufw allow 8787
 
@@ -141,7 +145,7 @@ fi
 #===========================================================================#
 echo "####################### SUMMARY ###########################"
 echo
-echo "Your username is " $username.
+echo "Your username is"$username.
 echo
 echo "These are the ports currently being listened on"
 netstat -lntu
@@ -149,7 +153,7 @@ echo
 echo "Thease are the IP addresses associated with this server"
 sudo ifconfig | awk '/inet addr/{print substr($2,6)}'
 echo
-echo "This is the Tor hostname. Keep it a secret."
+echo "This is the Tor hostname. Keep it a secret. You can use it to connect to this server over the Tor network."
 sudo cat /var/lib/tor/sshd/hostname
 echo
 echo "Goodbye"
