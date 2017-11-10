@@ -11,7 +11,7 @@ It taskes a fresh Ubuntu 16.04 Server and -
 4) Installs, configures and enables RStudio Server on port 8787.
 5) Installs, configures and enables Tor Hidden Service for SSH remote access.
 
-It is a very rough work in progress. Things may or may not work. There is no error handling, so make sure you actually have a remote server that you can access with an IP address and thatyou have sudo rights on that remote server beforehand.
+At present, this works but it's not elegant and has no bells and whistles. Things may or may not work. There is no error handling, so make sure you actually have a remote server that you can access with an IP address and thatyou have sudo rights on that remote server beforehand. You shouldn't run this twice. It'll work, but it will clog your `sources.list` with duplicates, re-`wget` files etc.
 
 ### How to use
 1) Initialize a remote Ubuntu 16.04 server. It needs (a) SSH access (b) a sudo user. You need to know its IP address.
