@@ -55,7 +55,7 @@ sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get install python3-pip -y
 sudo apt-get install npm nodejs-legacy -y
-sudo npm install -g configurable-http-proxy -y
+sudo npm install -g configurable-http-proxy
 sudo pip3 install jupyterhub
 sudo pip3 install --upgrade notebook
 
