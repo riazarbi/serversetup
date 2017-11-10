@@ -140,7 +140,7 @@ fi
 echo "######################### END #############################"
 echo "####################### SUMMARY ###########################"
 echo
-echo "Your username is"$username.
+echo "Your username is "$username.
 echo
 echo "These are the ports currently being listened on"
 netstat -lntu
