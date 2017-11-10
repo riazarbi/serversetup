@@ -34,7 +34,7 @@ echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[yes]$ ]]
 then
 
-echo "Setting WOrking Directory to /~
+echo "Setting WOrking Directory to /~"
 cd ~
 echo
 echo "Setting up UFW"
