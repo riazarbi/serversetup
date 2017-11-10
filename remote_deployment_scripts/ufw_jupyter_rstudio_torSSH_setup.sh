@@ -30,10 +30,12 @@ echo "############ You will only be able to log in with a private key ##########
 echo "You need to push a private SSH key to this server before running this script"
 echo
 read -p "Does your initial setup meet the above conditions and do you want to continue? (y/N)? " -n 1 -r
-echo    # (optional) move to a new line
+echo
 if [[ $REPLY =~ ^[yes]$ ]]
 then
+sleep 1
 
+echo
 echo "=====================> Setting Working Directory to /~"
 cd ~
 echo
