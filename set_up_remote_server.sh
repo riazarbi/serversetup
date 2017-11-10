@@ -30,5 +30,9 @@ echo "################ LEAVING LOCAL MACHINE ##############"
 echo "########## YOU WILL NOW BE IN REMOTE SHELL ##########"
 echo "#####################################################"
 echo 
-#ssh $remoteSUDOUSER@$remoteIPaddress 'bash -s' < remote_deployment_scripts/start.sh
+echo "Changing working directory to remote_deployment_scripts"
+echo
+echo "These are the contents of this folder"
+echo
+echo "Continue the stup by running start.sh"
 ssh -t $remoteSUDOUSER@$remoteIPaddress "cd remote_deployment_scripts && ls -l; bash"
