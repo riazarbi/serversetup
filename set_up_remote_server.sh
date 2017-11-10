@@ -24,9 +24,12 @@ echo "You should be able to continue the server setup by using the scripts in th
 echo "~/setup_scripts directory."
 echo
 echo "Logging in to remote server"
+
 echo "###################################################"
 echo "################LEAVING LOCAL MACHINE##############"
+echo "##########YOU WILL NOW BE IN REMOTE SHELL##########"
 echo "###################################################"
 echo 
 ssh $remoteSUDOUSER@$remoteIPaddress 'bash -s' < remote_deployment_scripts/start.sh
+ssh $remoteSUDOUSER@$remoteIPaddress
 
