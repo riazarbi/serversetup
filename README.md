@@ -35,7 +35,7 @@ At present, this works but it's not elegant and has no bells and whistles. Thing
 * Break out the large install script into smaller chained scripts
 * Create a 'select what to configure' dialog at top of start.sh
 * Limit SSH access to existing user only
-* Turn Tor hissen service into a stealth service
+* Turn Tor hidden service into a stealth service
 * Add h2o.ai to the installed services
 * Add a 'create new users' dialog to create safe (non-sudo) users who will be the actual users of the web services.
 * Install and configure Tex so that RStudio and Jupyter can write .Rmd and .ipynb files to PDF.
