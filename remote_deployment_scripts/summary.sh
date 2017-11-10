@@ -1,4 +1,5 @@
 #!/bin/bash
+username=$USER
 echo
 echo "####################### SUMMARY ###########################"
 echo
