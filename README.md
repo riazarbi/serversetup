@@ -39,3 +39,6 @@ At present, this works but it's not elegant and has no bells and whistles. Thing
 * Add h2o.ai to the installed services
 * Add a 'create new users' dialog to create safe (non-sudo) users who will be the actual users of the web services.
 * Install and configure Tex so that RStudio and Jupyter can write .Rmd and .ipynb files to PDF.
+* Configure SSL for Jupyterhub
+* Configure SSL for RStudio
+* Consider installing NextCloud Server, creating client sync for each user's home directory, and synchronizing passwords with system passwords
