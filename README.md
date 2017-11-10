@@ -8,8 +8,9 @@ When complete, it will take a fresh Ubuntu 16.04 Server and -
 1) Disable password authentication for SSH access.
 2) Configure UFW firewall.
 3) Install, configure and enable Jupyterhub Server on port 8000.
-4) INstall, configure and enable RStudio Server on port 8787.
+4) Install, configure and enable RStudio Server on port 8787.
 5) Install, configure and enable Tor Hidden Service for SSH remote access.
+6) Create regular users via prompts.
 
 It is a very rough work in progress. Things may or may not work.
 
