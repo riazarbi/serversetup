@@ -34,9 +34,8 @@ echo
 if [[ $REPLY =~ ^[yes]$ ]]
 then
 sleep 1
-
-sudo echo
 echo
+sudo echo
 sleep 1
 echo "=====================> Setting Working Directory to /~"
 cd ~
