@@ -34,10 +34,11 @@ echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[yes]$ ]]
 then
 
-echo "Setting WOrking Directory to /~"
+echo "=====================> Setting Working Directory to /~"
 cd ~
 echo
-echo "Setting up UFW"
+echo "=====================> Setting up UFW"
+echo
 sudo apt-get update
 sudo apt-get install ufw -y
 sudo ufw default allow outgoing
@@ -45,8 +46,8 @@ sudo ufw default deny incoming
 sudo ufw allow ssh
 echo "y" | sudo ufw enable
 
-echo "Setting up Jupyterhub"
-echo "Installing Packages"
+echo "=====================> Setting up Jupyterhub"
+echo "=====================> Installing Packages"
 sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get install python3-pip -y
@@ -55,66 +56,65 @@ sudo npm install -g configurable-http-proxy -y
 sudo pip3 install jupyterhub
 sudo pip3 install --upgrade notebook
 
-echo "Generating Jupyterhub Config"
+echo "=====================> Generating Jupyterhub Config"
 jupyterhub --generate-config
 sed -i "/c.Authenticator.admin_users/c\c.Authenticator.admin_users = {\'$username\'}" ~/jupyterhub_config.py
 
-echo "Creating Jupyterhub Startup Service"
-echo "Copying Jupyterhub startup service to /etc and /lib locations"
-
+echo "=====================> Copying Jupyterhub Startup service to /etc and /lib locations"
 sudo cp ~/remote_deployment_scripts/jupyterhub.service /etc/systemd/system/jupyterhub.service
 sudo cp /etc/systemd/system/jupyterhub.service /lib/systemd/system/jupyterhub.service
 
-echo "Enabling Jupyterhub at Startup"
+echo "=====================> Enabling Jupyterhub at Startup"
 sudo systemctl enable jupyterhub
 sudo systemctl start jupyterhub
 
-echo "Opening up Jupyterhub port 8000"
+echo "=====================> Opening up Jupyterhub port 8000"
 sudo ufw allow 8000
 
-echo "Setting Up RStudio Server"
-echo "Adding CRAN GPG key"
+echo "=====================> Setting Up RStudio Server"
+echo "=====================> Adding CRAN GPG key"
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 
-echo "adding Cran to Ubuntu repos"
+echo "=====================> Adding Cran to Ubuntu repos"
 echo "# CRAN Repo" | sudo tee -a /etc/apt/sources.list
 echo "deb https://cloud.r-project.org/bin/linux/ubuntu xenial/" | sudo tee -a /etc/apt/sources.list
 
-echo "Installing dependencies"
+echo "=====================> Installing dependencies"
 sudo apt-get update
 sudo apt-get install r-base -y
 sudo apt-get install gdebi-core -y
 
+echo "=====================> Getting RStudio Server .deb from website"
 echo "######################################################################"
 echo "NB: PROBABLY GET THE LATEST RSERVER DEB, THIS ONE IS A HARDLINKED WGET" 
 wget https://download2.rstudio.org/rstudio-server-1.1.383-amd64.deb
 
-echo "Installing RStudio Server"
+echo "=====================> Installing RStudio Server"
 sudo gdebi rstudio-server-1.1.383-amd64.deb
 
-echo "Enabling RStudio Server at Startup"
+echo "=====================> Enabling RStudio Server at Startup"
 sudo systemctl start rstudio-server
 sudo systemctl enable rstudio-server
 
-echo "Opening up RStudio Server on port 8787"
+echo "=====================> Opening up RStudio Server on port 8787"
 sudo ufw allow 8787
 
-echo "Setting up tor-based SSH"
-echo "Adding TOR repo to Ubuntu repos"
+echo "=====================> Setting up tor-based SSH"
+echo "=====================> Adding TOR repo to Ubuntu repos"
 echo "deb https://cloud.r-project.org/bin/linux/ubuntu xenial/" | sudo tee -a /etc/apt/sources.list
 echo "#Tor Repos" | sudo tee -a /etc/apt/sources.list
 echo "deb http://deb.torproject.org/torproject.org xenial main" | sudo tee -a /etc/apt/sources.list
 echo "deb-src http://deb.torproject.org/torproject.org xenial main" | sudo tee -a /etc/apt/sources.list
 
-echo "Adding Tor GPG key"
+echo "=====================> Adding Tor GPG key"
 gpg --keyserver keys.gnupg.net --recv A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89
 gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -
 
-echo "Installing Tor"
+echo "=====================> Installing Tor"
 sudo apt-get update
 sudo apt-get install tor deb.torproject.org-keyring 
 
-echo "Configuring Tor SSH Hidden Service"
+echo "=====================> Configuring Tor SSH Hidden Service"
 echo "################## Riaz Added Configs ###################" | sudo tee -a /etc/tor/torrc
 echo "HiddenServiceDir /var/lib/tor/sshd/" | sudo tee -a /etc/tor/torrc
 echo "HiddenServicePort 22 127.0.0.1:22" | sudo tee -a /etc/tor/torrc
@@ -122,12 +122,12 @@ sudo mkdir /var/lib/tor/sshd/
 sudo chmod 700 /var/lib/tor/sshd/
 sudo chown debian-tor.debian-tor /var/lib/tor/sshd/
 
-echo "Enabling Tor at startup"
+echo "=====================> Enabling Tor at startup"
 sudo systemctl enable tor
 sudo systemctl start tor
 sudo cat /var/lib/tor/sshd/hostname
 
-echo "Disabling password-based authentication for SSH"
+echo "=====================> Disabling password-based authentication for SSH"
 sudo sed -i '/PasswordAuthentication/c\PasswordAuthentication no' /etc/ssh/sshd_config
 nano /etc/ssh/sshd_config
 sudo service ssh restart
@@ -135,6 +135,7 @@ sudo service ssh restart
 fi
 
 #===========================================================================#
+echo "######################### END #############################"
 echo "####################### SUMMARY ###########################"
 echo
 echo "Your username is"$username.
@@ -150,3 +151,4 @@ sudo cat /var/lib/tor/sshd/hostname
 echo
 echo "Goodbye"
 echo
+exit
