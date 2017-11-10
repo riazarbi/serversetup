@@ -118,12 +118,13 @@ sudo apt-get update
 sudo apt-get install tor deb.torproject.org-keyring -y 
 
 echo "=====================> Configuring Tor SSH Hidden Service"
-echo "################## Riaz Added Configs ###################" | sudo tee -a /etc/tor/torrc
-echo "HiddenServiceDir /var/lib/tor/sshd/" | sudo tee -a /etc/tor/torrc
-echo "HiddenServicePort 22 127.0.0.1:22" | sudo tee -a /etc/tor/torrc
 sudo mkdir /var/lib/tor/sshd/
 sudo chmod 700 /var/lib/tor/sshd/
 sudo chown debian-tor.debian-tor /var/lib/tor/sshd/
+echo "################## Riaz Added Configs ###################" | sudo tee -a /etc/tor/torrc
+echo "HiddenServiceDir /var/lib/tor/sshd/" | sudo tee -a /etc/tor/torrc
+echo "HiddenServicePort 22 127.0.0.1:22" | sudo tee -a /etc/tor/torrc
+
 
 echo "=====================> Enabling Tor at startup"
 sudo systemctl enable tor
