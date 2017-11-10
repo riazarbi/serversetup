@@ -112,7 +112,7 @@ gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -
 
 echo "=====================> Installing Tor"
 sudo apt-get update
-sudo apt-get install tor deb.torproject.org-keyring 
+sudo apt-get install tor deb.torproject.org-keyring -y 
 
 echo "=====================> Configuring Tor SSH Hidden Service"
 echo "################## Riaz Added Configs ###################" | sudo tee -a /etc/tor/torrc
@@ -129,7 +129,6 @@ sudo cat /var/lib/tor/sshd/hostname
 
 echo "=====================> Disabling password-based authentication for SSH"
 sudo sed -i '/PasswordAuthentication/c\PasswordAuthentication no' /etc/ssh/sshd_config
-nano /etc/ssh/sshd_config
 sudo service ssh restart
 
 fi
