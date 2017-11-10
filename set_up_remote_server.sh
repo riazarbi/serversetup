@@ -29,5 +29,5 @@ echo "################LEAVING LOCAL MACHINE##############"
 echo "###################################################"
 echo 
 ssh $remoteSUDOUSER@$remoteIPaddress
-cd remote_deployment_scripts
-ls -l
+ssh $remoteSUDOUSER@$remoteIPaddress 'bash -s' < ~/remote_deployment_scripts/start.sh
+
