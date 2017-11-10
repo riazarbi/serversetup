@@ -82,7 +82,7 @@ echo "deb https://cloud.r-project.org/bin/linux/ubuntu xenial/" | sudo tee -a /e
 echo "=====================> Installing dependencies"
 sudo apt-get update
 sudo apt-get install r-base -y
-sudo apt-get install gdebi-core -y
+sudo apt-get install gdebi-core dpkg -y
 
 echo "=====================> Getting RStudio Server .deb from website"
 echo "######################################################################"
@@ -90,7 +90,7 @@ echo "NB: PROBABLY GET THE LATEST RSERVER DEB, THIS ONE IS A HARDLINKED WGET"
 wget https://download2.rstudio.org/rstudio-server-1.1.383-amd64.deb
 
 echo "=====================> Installing RStudio Server"
-sudo gdebi rstudio-server-1.1.383-amd64.deb
+sudo debi -n rstudio-server-1.1.383-amd64.deb
 
 echo "=====================> Enabling RStudio Server at Startup"
 sudo systemctl start rstudio-server
