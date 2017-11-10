@@ -24,6 +24,7 @@ At present, this works but it's not elegant and has no bells and whistles. Thing
 6) The script will send the key to the remote server. Enter your remote sudo password to send the key.
 7) The script will securely transfer the `remote_deployment_scripts` folder to the remote server.
 8) The script will SSH into the remote server and then wait for your prompts.
+
 -----ON THE REMOTE SERVER------
 9) The script will cd into the `remote_deployment_scripts` folder and list the folder contents.
 10) You'll have to enter `bash start.sh` to start the set up process.
