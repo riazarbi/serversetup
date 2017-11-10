@@ -26,6 +26,7 @@ At present, this works but it's not elegant and has no bells and whistles. Thing
 8) The script will SSH into the remote server and then wait for your prompts.
 
 -----ON THE REMOTE SERVER------
+
 9) The script will cd into the `remote_deployment_scripts` folder and list the folder contents.
 10) You'll have to enter `bash start.sh` to start the set up process.
 10) After check ing that you actually want to do this and getting your sudo password, `start.sh` will non-interactively do what it needs to. When it's done it will give you a summary.
