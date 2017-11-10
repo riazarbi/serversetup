@@ -43,7 +43,7 @@ sudo apt-get install ufw -y
 sudo ufw default allow outgoing
 sudo ufw default deny incoming
 sudo ufw allow ssh
-sudo ufw enable
+echo "y" | sudo ufw enable
 
 echo "Setting up Jupyterhub"
 echo "Installing Packages"
