@@ -129,6 +129,7 @@ echo "HiddenServicePort 22 127.0.0.1:22" | sudo tee -a /etc/tor/torrc
 echo "=====================> Enabling Tor at startup"
 sudo systemctl enable tor
 sudo systemctl start tor
+sudo systemctl restart tor
 sudo cat /var/lib/tor/sshd/hostname
 
 echo "=====================> Disabling password-based authentication for SSH"
