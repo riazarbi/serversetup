@@ -34,6 +34,9 @@ echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[yes]$ ]]
 then
 
+echo "Setting WOrking Directory to /~
+cd ~
+echo
 echo "Setting up UFW"
 sudo apt-get update
 sudo apt-get install ufw -y
@@ -57,20 +60,9 @@ jupyterhub --generate-config
 sed -i "/c.Authenticator.admin_users/c\c.Authenticator.admin_users = {\'$username\'}" ~/jupyterhub_config.py
 
 echo "Creating Jupyterhub Startup Service"
-cat >/etc/systemd/system/jupyterhub.service << EOL
-[Unit]
-Description=Jupyterhub
- 
-[Service]
-User=root
-Environment="PATH=/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/opt/anaconda3/bin"
-ExecStart=/usr/local/bin/jupyterhub -f /home/ubuntu/jupyterhub_config.py
- 
-[Install]
-WantedBy=multi-user.target
-EOL
+echo "Copying Jupyterhub startup service to /etc and /lib locations"
 
-echo "Copying Jupyterhub startup service to /lib/systemd"
+sudo cp ~/remote_deployment_scripts/jupyterhub.service /etc/systemd/system/jupyterhub.service
 sudo cp /etc/systemd/system/jupyterhub.service /lib/systemd/system/jupyterhub.service
 
 echo "Enabling Jupyterhub at Startup"
