@@ -28,8 +28,9 @@ Eventually, you should be avble to use this repo in the following way:
 7) The script will securely transfer the `remote_deployment_scripts` folder to the remote server.
 8) The script will SSH into the remote server and then wait for your prompts
 -----ON THE REMOTE SERVER------
-9) The script will cd into the `remote_deployment_scripts` folder and execute `setup.sh`.
-10) `setup.sh` will prompt you to specify what setup chunks you want to execute. Default is that all setup chunks are excuted. Select what you want and then let it do its thing.
+9) The script will cd into the `remote_deployment_scripts` folder and list the folder contents.
+10) You'll have to enter `bash start.sh`
+10) `start.sh` will prompt you to specify what setup chunks you want to execute. Default is that all setup chunks are excuted. Select what you want and then let it do its thing.
 
 ### Development Status
 The Plan is not ready yet. The scripts sort of work. There is only one script in the `remote_deployment_scripts` folder; it needs to be broken out onto a master script (with dialogs) and setup chunks. Will try clean up before 20 Nov '17 when I have time.
