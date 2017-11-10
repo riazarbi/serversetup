@@ -136,9 +136,10 @@ echo "=====================> Disabling password-based authentication for SSH"
 sudo sed -i '/PasswordAuthentication/c\PasswordAuthentication no' /etc/ssh/sshd_config
 sudo service ssh restart
 
+echo "################## END OF SETUP PROCESS ###################"
+
 fi
 
 #===========================================================================#
-echo "################## END OF SETUP PROCESS ###################"
 echo
 bash ~/remote_deployment_scripts/summary.sh
