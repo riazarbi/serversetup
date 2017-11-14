@@ -102,19 +102,22 @@ sudo systemctl enable rstudio-server
 echo "=====================> Opening up RStudio Server on port 8787"
 sudo ufw allow 8787
 
-#echo "=====================> Setting up Nextcloud"
-#sudo snap install nextcloud
-#echo "=====================> Creating a Nextcloud Admin User"
-#echo "=====================> Using the the sudo username " $username" as Nexcloud Admin User"
-#echo "=====================> Enter a password for the Nextcloud User " $username"
+echo "=====================> Setting up Nextcloud"
+sudo snap install nextcloud
+echo "=====================> Creating a Nextcloud Admin User"
+echo "=====================> Using the the sudo username " $username" as Nexcloud Admin User"
+echo "=====================> Enter a password for the Nextcloud User " $username:"
+read userpassword
+sleep 1
 
-#sudo nextcloud.manual-install $username $userpassword
+sudo nextcloud.manual-install $username $userpassword
 
-#echo "=====================> Setting up the IP address of this computer as a trusted domain"
-#echo "=====================> Enter the IP address of this computer to set it up as a trusted domain"
-#IPAddress=
-#sudo nextcloud.occ config:system:set trusted_domains 1 --value=$IPAddress
-#sudo ufw allow 80,443/tcp
+echo "=====================> Setting up the IP address of this computer as a trusted domain"
+echo "=====================> Enter the IP address of this computer to set it up as a trusted domain"
+read IPAddress
+sleep 1
+sudo nextcloud.occ config:system:set trusted_domains 1 --value=$IPAddress
+sudo ufw allow 80,443/tcp
 
 echo "=====================> Setting up tor-based SSH"
 echo "=====================> Adding TOR repo to Ubuntu repos"
