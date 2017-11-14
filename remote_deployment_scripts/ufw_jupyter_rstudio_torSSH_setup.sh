@@ -93,7 +93,8 @@ echo "NB: PROBABLY GET THE LATEST RSERVER DEB, THIS ONE IS A HARDLINKED WGET"
 wget https://download2.rstudio.org/rstudio-server-1.1.383-amd64.deb
 
 echo "=====================> Installing RStudio Server"
-sudo gdebi rstudio-server-1.1.383-amd64.deb
+#sudo gdebi rstudio-server-1.1.383-amd64.deb
+sudo gdebi --non-interactive rstudio-server-1.1.383-amd64.deb
 
 echo "=====================> Enabling RStudio Server at Startup"
 sudo systemctl start rstudio-server
