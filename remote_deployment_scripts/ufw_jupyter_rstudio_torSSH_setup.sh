@@ -76,6 +76,14 @@ sudo nextcloud.enable-https self-signed
 echo
 #=================================================================#
 
+echo "=====================> Setting up NextCloud Client"
+echo
+sudo add-apt-repository ppa:nextcloud-devs/client
+sudo apt-get update
+sudo apt install nextcloud-client -y
+echo
+#=================================================================#
+
 echo "=====================> Setting up HTOP"
 echo
 sudo apt-get update
