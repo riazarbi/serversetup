@@ -123,6 +123,11 @@ sleep 1
 sudo nextcloud.occ config:system:set trusted_domains 1 --value=$IPAddress
 sudo ufw allow 80,443/tcp
 
+echo "=====================> Installing Nextcloud Client"
+sudo add-apt-repository ppa:nextcloud-devs/client
+sudo apt-get update
+sudo apt-get install nextcloud-client
+
 echo "=====================> Setting up tor-based SSH"
 echo "=====================> Adding TOR repo to Ubuntu repos"
 echo "deb https://cloud.r-project.org/bin/linux/ubuntu xenial/" | sudo tee -a /etc/apt/sources.list
