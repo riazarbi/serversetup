@@ -36,3 +36,18 @@ else
   exit 0
 fi
 
+# To implement: set up automatic cron job to sync home folder to Nextcloud.
+# 1 Test this command
+# Add it to crontab programmatically
+# mabye you need to change to user
+# write out current crontab
+# crontab -l > mycron
+## echo new cron into cron file
+# echo "00 09 * * 1-5 echo hello" >> mycron
+## install new cron file
+# crontab mycron
+# rm mycron
+
+# I think this works
+#(crontab -l 2>/dev/null; echo "*/5 * * * * /path/to/job -with args") | crontab -
+#nextcloudcmd -u $added_user -p $added_password -s /home/username/ https://localhost/remote.php/webdav/
