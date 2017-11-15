@@ -40,9 +40,13 @@ sleep 1
 echo "=====================> Setting Working Directory to /~"
 cd ~
 echo
-echo "=====================> Setting up UFW"
+echo "=====================> Upgrading System"
 echo
 sudo apt-get update
+sudo aptdcon --upgrade-system
+echo
+echo "=====================> Setting up UFW"
+echo
 sudo apt-get install ufw -y
 sudo ufw default allow outgoing
 sudo ufw default deny incoming
