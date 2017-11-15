@@ -11,19 +11,21 @@
 #
 #=================================================================#
 echo
+echo "This script will crash hard if you are not a sudo user."
+echo
 echo "This non-interactive script will install, configure and enable:"
 echo
+echo "NextCloud"
 echo "JupyterHub"
 echo "RStudio Server"
 echo "UFW"
 echo "Tor SSH Hidden Service"
 echo
 username=$USER
-echo "Your username is "$username". This will be the username of the admin user for Jupyterhub and RStudio Server."
-echo "Your password for these services will be synchronised to you underlying system user password."
+echo "Your username is "$username". This will be the username of the admin user for Jupyterhub, RStudio Server and Nextcloud."
+echo "Your password for RStudio Server and JupyterHub will be synchronised to you underlying system user password."
+echo "You will be prompted for a password to associate with your Nextcloud Admin account."
 echo 
-echo "This script will crash hard if you are not a sudo user."
-echo
 echo "############### This script will DISABLE ssh password access.###############"
 echo "############################################################################"
 echo "############ You will only be able to log in with a private key ############"
@@ -31,6 +33,8 @@ echo "You need to push a private SSH key to this server before running this scri
 echo
 read -p "Does your initial setup meet the above conditions and do you want to continue? (y/N)? " -n 1 -r
 echo
+#=================================================================#
+
 if [[ $REPLY =~ ^[yes]$ ]]
 then
 sleep 1
@@ -40,18 +44,59 @@ sleep 1
 echo "=====================> Setting Working Directory to /~"
 cd ~
 echo
+#=================================================================#
+
+echo "=====================> Disabling password-based authentication for SSH"
+sudo sed -i '/PasswordAuthentication/c\PasswordAuthentication no' /etc/ssh/sshd_config
+sudo service ssh restart
+echo
+#=================================================================#
+
+echo "=====================> Setting up Nextcloud Server"
+echo "Admin user for nextcloud is " $USER
+echo
+echo "Please enter a password for your Nextcloud admin account:"
+read adminpassword
+echo
+echo "Please enter the IP address of this server for setting up Nextcloud Trusted Domain:"
+read ServerIP
+echo
+sudo snap install nextcloud
+snap changes nextcloud
+snap info nextcloud
+snap interfaces nextcloud
+echo "=====================> Setting up Admin user for Nextcloud"
+sudo nextcloud.manual-install $USER $adminpassword
+echo
+echo "=====================> Setting up this server's IP address as a trusted domain"
+sudo nextcloud.occ config:system:get trusted_domains
+sudo nextcloud.occ config:system:set trusted_domains 1 --value=$ServerIP
+sudo nextcloud.occ config:system:get trusted_domains
+sudo nextcloud.enable-https self-signed
+echo
+#=================================================================#
+
 echo "=====================> Setting up HTOP"
 echo
 sudo apt-get update
 sudo apt-get install htop -y
+echo
+#=================================================================#
+
 echo "=====================> Setting up UFW"
 echo
 sudo apt-get install ufw -y
 sudo ufw default allow outgoing
 sudo ufw default deny incoming
+echo "Opening up ports 22 for SSH access"
 sudo ufw allow ssh
+echo "Opening up ports 80 and 443 for Nexcloud"
+sudo ufw allow 80,443/tcp
+echo
 echo "y" | sudo ufw enable
+echo
 
+#=================================================================#
 echo "=====================> Setting up Jupyterhub"
 echo "=====================> Installing Packages"
 sudo apt-get update
@@ -76,7 +121,9 @@ sudo systemctl start jupyterhub
 
 echo "=====================> Opening up Jupyterhub port 8000"
 sudo ufw allow 8000
+echo
 
+#=================================================================#
 echo "=====================> Setting Up RStudio Server"
 echo "=====================> Adding CRAN GPG key"
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
@@ -105,29 +152,9 @@ sudo systemctl enable rstudio-server
 
 echo "=====================> Opening up RStudio Server on port 8787"
 sudo ufw allow 8787
+echo
 
-echo "=====================> Setting up Nextcloud"
-sudo snap install nextcloud
-echo "=====================> Creating a Nextcloud Admin User"
-echo "=====================> Using the the sudo username " $username" as Nexcloud Admin User"
-echo "=====================> Enter a password for the Nextcloud User " $username:"
-read userpassword
-sleep 1
-
-sudo nextcloud.manual-install $username $userpassword
-
-echo "=====================> Setting up the IP address of this computer as a trusted domain"
-echo "=====================> Enter the IP address of this computer to set it up as a trusted domain"
-read IPAddress
-sleep 1
-sudo nextcloud.occ config:system:set trusted_domains 1 --value=$IPAddress
-sudo ufw allow 80,443/tcp
-
-echo "=====================> Installing Nextcloud Client"
-sudo add-apt-repository ppa:nextcloud-devs/client
-sudo apt-get update
-sudo apt-get install nextcloud-client
-
+#=================================================================#
 echo "=====================> Setting up tor-based SSH"
 echo "=====================> Adding TOR repo to Ubuntu repos"
 echo "deb https://cloud.r-project.org/bin/linux/ubuntu xenial/" | sudo tee -a /etc/apt/sources.list
@@ -157,11 +184,7 @@ sudo systemctl enable tor
 sudo systemctl start tor
 sudo systemctl restart tor
 sudo cat /var/lib/tor/sshd/hostname
-
-echo "=====================> Disabling password-based authentication for SSH"
-sudo sed -i '/PasswordAuthentication/c\PasswordAuthentication no' /etc/ssh/sshd_config
-sudo service ssh restart
-
+echo
 echo "################## END OF SETUP PROCESS ###################"
 
 fi
