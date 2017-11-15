@@ -45,6 +45,10 @@ echo
 sudo apt-get update
 sudo aptdcon --upgrade-system
 echo
+
+echo "=====================> Setting up HTOP"
+echo
+sudo apt-get install htop -y
 echo "=====================> Setting up UFW"
 echo
 sudo apt-get install ufw -y
