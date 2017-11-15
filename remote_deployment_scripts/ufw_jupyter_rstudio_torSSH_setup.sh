@@ -186,13 +186,18 @@ echo "################## Riaz Added Configs ###################" | sudo tee -a /
 echo "HiddenServiceDir /var/lib/tor/sshd/" | sudo tee -a /etc/tor/torrc
 echo "HiddenServicePort 22 127.0.0.1:22" | sudo tee -a /etc/tor/torrc
 
-
 echo "=====================> Enabling Tor at startup"
 sudo systemctl enable tor
 sudo systemctl start tor
 sudo systemctl restart tor
 sudo cat /var/lib/tor/sshd/hostname
 echo
+#=================================================================#
+
+echo "=====================> Setting up Automatic Upgrades"
+sudo apt-get install unattended-upgrades
+sudo dpkg-reconfigure unattended-upgrades
+
 echo "################## END OF SETUP PROCESS ###################"
 
 fi
