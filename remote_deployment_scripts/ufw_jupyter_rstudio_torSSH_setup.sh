@@ -40,14 +40,9 @@ sleep 1
 echo "=====================> Setting Working Directory to /~"
 cd ~
 echo
-echo "=====================> Upgrading System"
-echo
-sudo apt-get update
-sudo aptdcon --upgrade-system
-echo
-
 echo "=====================> Setting up HTOP"
 echo
+sudo apt-get update
 sudo apt-get install htop -y
 echo "=====================> Setting up UFW"
 echo
