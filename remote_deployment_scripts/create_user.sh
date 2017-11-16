@@ -45,7 +45,7 @@ then
   echo "Now we're going to set up a 5 minute repating task to sync "$added_user"'s NexCloud account and Home folder."
   echo
   echo "Adding sync script to the root crontab."
-  (crontab -l 2>/dev/null; echo "*/5 * * * * su $added_user nextcloudcmd -u $added_user -p $added_password -s /home/$added_user/ https://localhost/remote.php/webdav/") | crontab -
+  (crontab -l 2>/dev/null; echo "*/5 * * * * su $added_user -c 'nextcloudcmd -u $added_user -p $added_password -s /home/$added_user/ https://localhost/remote.php/webdav/'") | crontab -
   echo
   echo "Done. To delete files, use the NextCloud interface."
   echo "Deletions done via JupyterHub or RStudio will be undone by the NextCloud server."
