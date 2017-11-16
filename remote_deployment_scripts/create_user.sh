@@ -4,7 +4,7 @@ echo "Users created with this script will have a Home folder."
 echo "Their Home folder will be accessible to via JupyterHub and RStudio Server and synced to NextCloud."
 echo "They will NOT have sudo rights."
 echo "You're going tho have to enter passwords a LOT of times while this script is running. But it's relatively quick."
-echo 
+echo
 echo "Attempting to elevate to root."
 sudo echo
 
@@ -28,41 +28,47 @@ sleep 1
 echo "Creating user on the NextCloud Server..."
 export OC_PASS=$added_password
 
-sudo nextcloud.occ user:add --password-from-env $added_user
+nextcloud.occ user:add --password-from-env $added_user
 echo
 
 echo "If your Nextcloud password was too weak you'll have to abort."
 read -p "Do you want to continue? [y/N] " prompt
 if [[ $prompt == "y" || $prompt == "Y" || $prompt == "yes" || $prompt == "Yes" ]]
 then
-
+  echo
   echo "Creating user on the JupyterHub/RStudio server..."
   echo
   useradd -m $added_user
-  echo $added_password | passwd $added_user --stdin
-
-  echo "Now we're going to set up a 5 minute rpeeating task to sync "$added_user"'s NexCloud account and Home folder."
-  if [ "$(whoami)" != "root" ]
-  then
-      sudo su -s "$0"
-      exit
-  fi
-  echo "Enter "$added_user"'s password."
-  echo "Adding a 5 minute sync between "$added_user"'s Home folder and NextCloud account to the root crontab."
-  (crontab -l 2>/dev/null; echo "*/5 * * * * su $added_user nextcloudcmd -u $added_user -p $added_password -s /home/$added_user/ https://localhost/remote.php/webdav/") | cr$
-  echo "Done. To delete files, use the NextCloud interface. Deletions done via JupyterHub or RStudio will be undone. Additions will be persistent, however."
+  echo $added_user:$added_password | chpasswd
+  echo "Created new system user "$added_user" with password "$added_password"."
+  echo
+  echo "Now we're going to set up a 5 minute repating task to sync "$added_user"'s NexCloud account and Home folder."
+  echo
+  echo "Adding sync script to the root crontab."
+  (crontab -l 2>/dev/null; echo "*/5 * * * * su $added_user nextcloudcmd -u $added_user -p $added_password -s /home/$added_user/ https://localhost/remote.php/webdav/") | crontab -
+  echo
+  echo "Done. To delete files, use the NextCloud interface."
+  echo "Deletions done via JupyterHub or RStudio will be undone by the NextCloud server."
+  echo "Additions and modifications are will be persistent no matter where they are done."
   echo
 
 else
   echo
+  echo "Aborting."
+  echo
+
 fi
 
 read -p "Do you want to run the user creation script again? [y/N] " prompt
 if [[ $prompt == "y" || $prompt == "Y" || $prompt == "yes" || $prompt == "Yes" ]]
 then
+  echo
   bash create_user.sh
+  echo
 else
+  echo
   echo "Goodbye."
   echo
   exit 0
 fi
+
