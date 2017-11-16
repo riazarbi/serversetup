@@ -204,4 +204,5 @@ fi
 
 #===========================================================================#
 echo
+bash ~/remote_deployment_scripts/create_user.sh
 bash ~/remote_deployment_scripts/summary.sh
