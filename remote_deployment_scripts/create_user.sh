@@ -21,7 +21,7 @@ then
 
   echo "Creating user on the JupyterHub/RStudio server..."
   echo
-  adduser $added_user
+  sudo adduser $added_user
 
   echo "Now we're going to set up a 5 minute rpeeating task to sync "$added_user"'s NexCloud account and Home folder."
   echo
