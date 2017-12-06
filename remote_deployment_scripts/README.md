@@ -1,4 +1,8 @@
 ## Description of what each file does
+### Generic _setup.sh files
+Any 
+
+
 ### start.sh
 This is the master script that executes all the others in an interactive manner. It should be the only script you run when setting up a new system.
 
