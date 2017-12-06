@@ -51,7 +51,7 @@ then
     echo $added_user:$added_password | chpasswd
     echo "Created new system user "$added_user" with password "$added_password"."
     echo
-    echo "Now we're going to set up a 5 minute repating task to sync "$added_user"'s NexCloud account and Home folder."
+    echo "Now we're going to set up a 5 minute repeating task to sync "$added_user"'s NexCloud account and Home folder."
     echo
     echo "Adding sync script to the root crontab."
     (crontab -l 2>/dev/null; echo "*/5 * * * * su $added_user -c 'nextcloudcmd -u $added_user -p $added_password -s /home/$added_user/ https://localhost/remote.php/webdav/'") | crontab -
