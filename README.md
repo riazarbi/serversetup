@@ -6,10 +6,12 @@ This is my personal set of scripts for customizing a basic Ubuntu server install
 It taskes a fresh Ubuntu 16.04 Server and -
 
 1) Disables password authentication for SSH access.
-2) Configures UFW firewall.
-3) Installs, configures and enables Jupyterhub Server on port 8000.
-4) Installs, configures and enables RStudio Server on port 8787.
-5) Installs, configures and enables Tor Hidden Service for SSH remote access.
+2) Installs some favourite sysadmin utilities (Htop).
+3) Configures UFW firewall.
+4) Installs and configures a NextCloud Server.
+5) Installs and configures my Data Science stack (JupyterHub, RStudio Server, MIkTex).
+6) Installs, configures and enables Tor Hidden Service for SSH remote access.
+7) Creates non-standard users and syncs their home directories with the NextCloud server.
 
 At present, this works but it's not elegant and has no bells and whistles. Things may or may not work. There is no error handling, so make sure you actually have a remote server that you can access with an IP address and thatyou have sudo rights on that remote server beforehand. You shouldn't run this twice. It'll work, but it will clog your `sources.list` with duplicates, re-`wget` files etc.
 
@@ -29,17 +31,12 @@ At present, this works but it's not elegant and has no bells and whistles. Thing
 
 9) The script will cd into the `remote_deployment_scripts` folder and list the folder contents.
 10) You'll have to enter `bash start.sh` to start the set up process.
-10) After checking that you actually want to do this and getting your sudo password, `start.sh` will non-interactively do what it needs to. When it's done it will give you a summary.
+10) After checking that you actually want to do this and getting your sudo password, `start.sh` will start working through the install process. I've tried to make it as non-interactive as possible, but you'll still have to enter prompts form time to time - feel free to fix this and commit!
 
 ### TO DO
-* Break out the large install script into smaller chained scripts
 * Create a 'select what to configure' dialog at top of start.sh
-* Limit SSH access to existing user only
-* Turn Tor hidden service into a stealth service
+* Limit SSH access to standard users only
 * Add h2o.ai to the installed services
-* Add a 'create new users' dialog to create safe (non-sudo) users who will be the actual users of the web services.
-* Install and configure Tex so that RStudio and Jupyter can write .Rmd and .ipynb files to PDF.
 * Configure SSL for Jupyterhub
 * Configure SSL for RStudio
-* Consider installing NextCloud Server, creating client sync for each user's home directory, and synchronizing passwords with system passwords
 * Eliminate prompts
