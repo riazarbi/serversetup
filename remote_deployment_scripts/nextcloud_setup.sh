@@ -7,6 +7,9 @@ echo
 echo "Please enter a password for your Nextcloud admin account:"
 read adminpassword
 echo
+echo "Thease are the IP addresses associated with this server"
+sudo ifconfig | awk '/inet addr/{print substr($2,6)}'
+echo
 echo "Please enter the IP address of this server for setting up Nextcloud Trusted Domain:"
 read ServerIP
 echo
