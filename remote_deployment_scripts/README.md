@@ -1,4 +1,4 @@
-## Description of what each file does
+## Description of what each file in this folder does
 ### Generic _setup.sh files
 Any file with a _setup.sh suffix generally installs and configures a program or functionality. You can edit these files to modify how that particular fiunctionality is installed.
 
