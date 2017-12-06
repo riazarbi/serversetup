@@ -16,7 +16,7 @@ If NextCloud server has not been installed it just sets up a regular system user
 #### summary.sh
 This script will display a summary of the server's networking and firewall rules.
 It will display
-- the current username
+- The current username
 - The ports currently being listened on
 - The LAN IP address associated with the server
 - The UFW rules in force
