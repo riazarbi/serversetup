@@ -29,6 +29,7 @@ sudo systemctl enable rstudio-server
 
 echo "=====================> Opening up RStudio Server on port 8787"
 sudo ufw allow 8787
+sudo ufw reload
 echo
 
 #===========================================================================#

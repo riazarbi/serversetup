@@ -24,6 +24,7 @@ sudo systemctl start jupyterhub
 
 echo "=====================> Opening up Jupyterhub port 8000"
 sudo ufw allow 8000
+sudo ufw reload
 echo
 
 #=================================================================#
