@@ -18,6 +18,7 @@ fi
 
 # Collect desired username and password
 echo "Root elevation success."
+echo
 echo "Enter the new user's username:"
 read added_user
 echo
@@ -28,7 +29,7 @@ echo
 sleep 1
 
 # NextCloud Based Install
-read -p "Do you have NextCloud Server installed on this machine? [y/N]"
+read -p "Do you have NextCloud Server installed on this machine? [y/N]" prompt
 if [[ $prompt == "y" || $prompt == "Y" || $prompt == "yes" || $prompt == "Yes" ]]
 then
   echo "Creating user on the NextCloud Server..."
@@ -82,7 +83,8 @@ then
 
 else 
 echo
-echo "Creating user on the JupyterHub/RStudio server..."
+echo "Creating a regular system user.
+echo "This user will be accessible on the JupyterHub and/or RStudio servers if you have them configured"
 echo
 useradd -m $added_user
 echo $added_user:$added_password | chpasswd
