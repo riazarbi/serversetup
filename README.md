@@ -15,6 +15,9 @@ It taskes a fresh Ubuntu 16.04 Server and -
 
 At present, this works but it's not elegant and has no bells and whistles. Things may or may not work. There is no error handling, so make sure you actually have a remote server that you can access with an IP address and thatyou have sudo rights on that remote server beforehand. You shouldn't run this twice. It'll work, but it will clog your `sources.list` with duplicates, re-`wget` files etc.
 
+### Security
+This configuration is not intended to be exposed to the open internet. SSH key-based auth and UFW rules lock it down somewhat, but the JupyterHub and RStudio Server WebUIs are not secure. If you want to expose this to the open internet, euther lock down all non-ssh ports with UFW and SOCKS in, or install OpenVPN server and distribute keys to people who will access it. 
+
 ### How to use
 1) Initialize a remote Ubuntu 16.04 server. It needs (a) SSH access (b) a sudo user. You need to know its IP address.
 2) Clone this repo to your *local* machine
@@ -40,3 +43,4 @@ At present, this works but it's not elegant and has no bells and whistles. Thing
 * Configure SSL for Jupyterhub
 * Configure SSL for RStudio
 * Eliminate prompts
+* Configure OpenVPN and create client keys for each user, and place then in each user's home directory.
