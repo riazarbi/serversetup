@@ -1,5 +1,5 @@
 ## Description of what each file in this folder does
-All of these scripts are intended to be stanadlone scripts; you should be able to run them on their own to configure a particular program or service. After your initial install, it's probably best to run the individual scripts to modify parts of the system to avoid clogging the sources.list and re-downloading stuff that doesn't need to be downloaded.
+All of these scripts are intended to be standalone scripts; you should be able to run them on their own to configure a particular program or service. After your initial install, it's probably best to run the individual scripts to modify parts of the system to avoid clogging the sources.list and re-downloading stuff that doesn't need to be downloaded.
 
 ### Generic _setup.sh files
 Any file with a _setup.sh suffix generally installs and configures a program or functionality. You can edit these files to modify how that particular fiunctionality is installed.
