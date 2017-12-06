@@ -42,7 +42,7 @@ then
   echo "If your Nextcloud password was too weak you'll have to abort."  
   echo
   read -p "Do you want to continue? [y/N] " prompt
-  if [[ $prompt == "y" || $prompt == "Y" || $prompt == "yes" || $prompt == "Yes" ]]
+  if [[ $prompt == "y" || $prompt == "Y" || $prompt == "yes" || $prompt == "Yes" ]] prompt
   then
     echo
     echo "Creating user on the JupyterHub/RStudio server..."
