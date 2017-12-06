@@ -32,7 +32,7 @@ echo "JupyterHub"
 echo "RStudio Server"
 echo "Tor SSH Hidden Service"
 echo "Create new regular system users"
-echo "Sync new users' home folders with the local NextCloud server"
+echo "Sync new user home folders with the local NextCloud server"
 echo
 username=$USER
 echo "Your username is "$username". This will be the username of the admin user for Jupyterhub, RStudio Server and Nextcloud."
