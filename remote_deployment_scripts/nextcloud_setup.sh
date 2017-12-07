@@ -32,7 +32,6 @@ echo
 
 #=================================================================#
 echo "=====================> Setting up NextCloud Client"
-echo
 sudo add-apt-repository ppa:nextcloud-devs/client
 sudo apt-get update
 sudo apt install nextcloud-client -y
@@ -40,8 +39,7 @@ echo
 #=================================================================#
 
 echo "=====================> Opening Up Ports"
-echo
-echo "Opening up ports 80 and 443 for Nexcloud"
+echo "Opening up ports 80 and 443 for NextCloud"
 sudo ufw allow 80,443/tcp
 sudo ufw reload
 echo
