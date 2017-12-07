@@ -83,7 +83,7 @@ then
 
 else 
 echo
-echo "Creating a regular system user.
+echo "Creating a regular system user."
 echo "This user will be accessible on the JupyterHub and/or RStudio servers if you have them configured"
 echo
 useradd -m $added_user
