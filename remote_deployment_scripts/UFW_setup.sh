@@ -2,7 +2,6 @@
 
 echo
 echo "=====================> Setting up UFW"
-echo
 sudo apt-get install ufw -y
 sudo ufw default allow outgoing
 sudo ufw default deny incoming
