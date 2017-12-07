@@ -51,6 +51,7 @@ echo
 if [[ $REPLY =~ ^[yes]$ ]]
   then
   echo "Commencing setup"  
+  echo
   sleep 1  
   echo "=====================> Setting Working Directory to /~"
   cd ~
