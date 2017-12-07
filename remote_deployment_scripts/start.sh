@@ -66,17 +66,26 @@ else
 fi
 #=================================================================#
 
-
+# Compulsory Installs
 bash ~/remote_deployment_scripts/disable_ssh_password_access.sh
 bash ~/remote_deployment_scripts/UFW_setup.sh
 bash ~/remote_deployment_scripts/automatic_upgrades_setup.sh
 bash ~/remote_deployment_scripts/htop_setup.sh
 
+# Optional Installs
+echo
+echo "NextCloud | JupyterHub | RStudio Server | Tor SSH Hidden Service"
+read -p "Do you want to install and configure the above packages? [y/N]" prompt
+sleep 1
+if [[ $prompt == "y" || $prompt == "Y" || $prompt == "yes" || $prompt == "Yes" ]]
+then
 bash ~/remote_deployment_scripts/nextcloud_setup.sh
 bash ~/remote_deployment_scripts/jupyterhub_setup.sh
 bash ~/remote_deployment_scripts/rstudio_server_setup.sh
 bash ~/remote_deployment_scripts/tor_ssh_setup.sh
+fi
 
+# New Users
 sudo bash ~/remote_deployment_scripts/create_user.sh
 bash ~/remote_deployment_scripts/summary.sh
 
