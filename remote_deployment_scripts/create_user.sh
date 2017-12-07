@@ -78,7 +78,7 @@ then
     echo
     echo "Goodbye."
     echo
-  exit 0
+    exit
   fi
 
 else 
@@ -104,5 +104,5 @@ else
   echo
   echo "Goodbye."
   echo
-exit 0
+  exit
 fi
