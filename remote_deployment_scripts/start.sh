@@ -66,16 +66,16 @@ fi
 #=================================================================#
 
 
-sudo bash ~/remote_deployment_scripts/disable_ssh_password_access.sh
-sudo bash ~/remote_deployment_scripts/UFW_setup.sh
-sudo bash ~/remote_deployment_scripts/automatic_upgrades_setup.sh
-sudo bash ~/remote_deployment_scripts/htop_setup.sh
+bash ~/remote_deployment_scripts/disable_ssh_password_access.sh
+bash ~/remote_deployment_scripts/UFW_setup.sh
+bash ~/remote_deployment_scripts/automatic_upgrades_setup.sh
+bash ~/remote_deployment_scripts/htop_setup.sh
 
-sudo bash ~/remote_deployment_scripts/nextcloud_setup.sh
-sudo bash ~/remote_deployment_scripts/jupyterhub_setup.sh
-sudo bash ~/remote_deployment_scripts/rstudio_server_setup.sh
-sudo bash ~/remote_deployment_scripts/tor_ssh_setup.sh
+bash ~/remote_deployment_scripts/nextcloud_setup.sh
+bash ~/remote_deployment_scripts/jupyterhub_setup.sh
+bash ~/remote_deployment_scripts/rstudio_server_setup.sh
+bash ~/remote_deployment_scripts/tor_ssh_setup.sh
 
-sudo sudo bash ~/remote_deployment_scripts/create_user.sh
-sudo sudo bash ~/remote_deployment_scripts/summary.sh
+sudo bash ~/remote_deployment_scripts/create_user.sh
+bash ~/remote_deployment_scripts/summary.sh
 
