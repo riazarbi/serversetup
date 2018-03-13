@@ -4,7 +4,7 @@ Description=Jupyterhub
 [Service]
 User=root
 Environment="PATH=/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/opt/anaconda3/bin"
-ExecStart=/usr/local/bin/jupyterhub -f /home/ubuntu/jupyterhub_config.py
+ExecStart=/usr/local/bin/jupyterhub -f /etc/jupyterhub/jupyterhub_config.py
  
 [Install]
 WantedBy=multi-user.target
