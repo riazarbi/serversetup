@@ -28,7 +28,7 @@ sed -i "/c.Spawner.default_url/c\c.Spawner.default_url = '/lab'" ~/jupyterhub_co
 sed -i "/c.Spawner.cmd/c\c.Spawner.cmd = ['jupyter-labhub']" ~/jupyterhub_config.py
 
 echo "=====================> Copying Jupyterhub config to /etc/jupyterhub"
-sudo cp ~/jupyterhub_config.py /etc/jupyterhub/jupyterhub_config.py
+sudo cp ~/jupyterhub_config.py /etc/jupyterhub/
 sudo chown root:root /etc/jupyterhub/jupyterhub_config.yp
 sudo chmod 0644 /etc/jupyterhub/jupyterhub_config.py
 
