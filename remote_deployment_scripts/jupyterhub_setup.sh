@@ -27,6 +27,11 @@ jupyter labextension install @jupyterlab/hub-extension
 sed -i "/c.Spawner.default_url/c\c.Spawner.default_url = '/lab'" ~/jupyterhub_config.py
 sed -i "/c.Spawner.cmd/c\c.Spawner.cmd = ['jupyter-labhub']" ~/jupyterhub_config.py
 
+echo "=====================> Copying Jupyterhub config to /etc/jupyterhub"
+sudo cp ~/jupyterhub_config.py /etc/jupyterhub/jupyterhub_config.py
+sudo chown root:root /etc/jupyterhub/jupyterhub_config.yp
+sudo chmod 0644 /etc/jupyterhub/jupyterhub_config.py
+
 echo "=====================> Copying Jupyterhub Startup service to /etc and /lib locations"
 sudo cp ~/remote_deployment_scripts/jupyterhub.service /etc/systemd/system/jupyterhub.service
 sudo cp /etc/systemd/system/jupyterhub.service /lib/systemd/system/jupyterhub.service
